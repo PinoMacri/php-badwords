@@ -1,8 +1,10 @@
 <?php
-$censured = $_GET["censura"];
+$censured = strtolower($_GET["censura"]) ;
 $paragraph = $_GET["paragrafo"];
 
 $contatore = strlen($paragraph);
+$asterischi = "***";
+$sottrazione_censura = (strlen($censured) - strlen($asterischi));
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +25,8 @@ $contatore = strlen($paragraph);
 
     <div>
         <h2>Paragrafo censurato</h2>
-        <p><?php echo str_replace(ucfirst($censured), "***", $paragraph) ?></p>
-        <p>Il paragrafo originale era lungo <?php echo $contatore ?> caratteri</p>
+        <p><?php echo str_replace($censured, $asterischi, strtolower($paragraph)) ?></p>
+        <p>Il paragrafo censurato è lungo <?php echo ($contatore - $sottrazione_censura)?> caratteri</p>
     </div>
 </body>
 
